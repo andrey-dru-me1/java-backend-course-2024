@@ -16,8 +16,9 @@ public class TrackProcessor implements CommandProcessor {
 
   @Override
   public SendMessage process(Long chatId, String message) {
-    if (!links.containsKey(chatId))
+    if (!links.containsKey(chatId)) {
       return new SendMessage(chatId, "Register yourself in bot via command /start first.");
+    }
     userMessageProcessor.setProcessor(new ReadLinksProcessor());
     return new SendMessage(chatId, "Write down links you want to track:");
   }

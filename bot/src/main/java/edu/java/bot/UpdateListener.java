@@ -6,8 +6,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UpdateListener {
 
-    public UpdateListener(ApplicationConfig applicationConfig, Bot bot) {
-        applicationConfig.telegramBot().setUpdatesListener(bot);
-    }
-
+  public UpdateListener(ApplicationConfig applicationConfig, Bot bot) {
+    applicationConfig.telegramBot().setUpdatesListener(bot);
+  }
 }

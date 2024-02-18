@@ -14,11 +14,14 @@ public class ListProcessor implements CommandProcessor {
 
   @Override
   public SendMessage process(Long chatId, String message) {
-    if(!links.containsKey(chatId))
+    if (!links.containsKey(chatId)) {
       return new SendMessage(chatId, "Register yourself in bot via command /start first.");
+    }
 
     List<String> userLinks = links.get(chatId);
-    if (userLinks.isEmpty()) return new SendMessage(chatId, "No links are tracked.");
+    if (userLinks.isEmpty()) {
+      return new SendMessage(chatId, "No links are tracked.");
+    }
 
     StringBuilder stringBuilder = new StringBuilder();
     for (String link : userLinks) {

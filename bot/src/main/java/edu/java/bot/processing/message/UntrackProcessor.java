@@ -12,13 +12,14 @@ public class UntrackProcessor implements CommandProcessor {
 
   public UntrackProcessor(Links links, UserMessageProcessor userMessageProcessor) {
     this.links = links;
-      this.userMessageProcessor = userMessageProcessor;
+    this.userMessageProcessor = userMessageProcessor;
   }
 
   @Override
   public SendMessage process(Long chatId, String message) {
-    if(!links.containsKey(chatId))
+    if (!links.containsKey(chatId)) {
       return new SendMessage(chatId, "Register yourself in bot via command /start first.");
+    }
     userMessageProcessor.setProcessor(new ReadLinksProcessor());
     return new SendMessage(chatId, "Write down links you want to remove:");
   }
@@ -31,7 +32,9 @@ public class UntrackProcessor implements CommandProcessor {
       String[] linksToRemove = message.split("\\r?\\n");
       List<String> removedLinks = new ArrayList<>();
       for (String linkToRemove : linksToRemove) {
-        if (userLinks.remove(linkToRemove)) removedLinks.add(linkToRemove);
+        if (userLinks.remove(linkToRemove)) {
+          removedLinks.add(linkToRemove);
+        }
       }
 
       String response = "";
