@@ -1,12 +1,12 @@
 package edu.java.bot;
 
-import edu.java.bot.configuration.ApplicationConfig;
+import com.pengrad.telegrambot.TelegramBot;
 import org.springframework.stereotype.Component;
 
 @Component
 public class UpdateListener {
 
-  public UpdateListener(ApplicationConfig applicationConfig, Bot bot) {
-    applicationConfig.telegramBot().setUpdatesListener(bot);
+  public UpdateListener(TelegramBot telegramBot, Bot bot) {
+    telegramBot.setUpdatesListener(bot);
   }
 }

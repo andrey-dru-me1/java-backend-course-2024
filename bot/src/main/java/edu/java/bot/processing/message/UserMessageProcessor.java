@@ -1,6 +1,6 @@
 package edu.java.bot.processing.message;
 
-import edu.java.bot.configuration.ApplicationConfig;
+import com.pengrad.telegrambot.TelegramBot;
 import edu.java.bot.db.emulation.Links;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
@@ -9,12 +9,12 @@ import org.springframework.stereotype.Component;
 public class UserMessageProcessor {
 
   private final CommandProcessor defaultProcessor;
-  private final ApplicationConfig applicationConfig;
+  private final TelegramBot telegramBot;
   @Setter private CommandProcessor processor;
 
-  public UserMessageProcessor(ApplicationConfig applicationConfig, Links links) {
+  public UserMessageProcessor(TelegramBot telegramBot, Links links) {
     processor = new RootProcessor(links, this);
-    this.applicationConfig = applicationConfig;
+    this.telegramBot = telegramBot;
     defaultProcessor = processor;
   }
 
@@ -23,6 +23,6 @@ public class UserMessageProcessor {
   }
 
   public void process(Long chatId, String message) {
-    applicationConfig.telegramBot().execute(processor.process(chatId, message));
+    telegramBot.execute(processor.process(chatId, message));
   }
 }
