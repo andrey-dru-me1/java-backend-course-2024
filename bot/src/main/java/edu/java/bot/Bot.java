@@ -22,10 +22,9 @@ public class Bot implements UpdatesListener {
     for (Update update : list) {
       Long chatId = update.message().chat().id();
       String text = update.message().text();
-      log.info(
-          "Message from user received. chatId: {}, message: {}, self: {}", chatId, text, this);
+      log.info("Message from user received. chatId: {}, message: {}, self: {}", chatId, text, this);
       userMessageProcessor.process(chatId, text);
     }
-    return com.pengrad.telegrambot.UpdatesListener.CONFIRMED_UPDATES_ALL;
+    return CONFIRMED_UPDATES_ALL;
   }
 }
