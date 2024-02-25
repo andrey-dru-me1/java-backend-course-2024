@@ -8,15 +8,15 @@ import lombok.Setter;
 @Getter
 @Setter
 public class StackOverflowQuestion {
-  private long question_id;
+  private long questionId;
   private String[] tags;
 
   @JsonAlias("is_answered")
-  private boolean is_answered;
+  private boolean isAnswered;
 
-  private long view_count;
-  private int answer_count;
+  private long viewCount;
+  private int answerCount;
   private int score;
-  private OffsetDateTime last_edit_date;
+  private OffsetDateTime lastEditDate;
   private String title;
 }

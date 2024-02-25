@@ -19,10 +19,10 @@ public class StackOverflowClient {
     this.webClient = webClientBuilder.baseUrl(baseUrl).build();
   }
 
-  public Mono<StackOverflowQuestion> getQuestion(long question_id) {
+  public Mono<StackOverflowQuestion> getQuestion(long questionId) {
     return this.webClient
         .get()
-        .uri("/questions/{question_id}?order=desc&sort=activity&site=stackoverflow", question_id)
+        .uri("/questions/{question_id}?order=desc&sort=activity&site=stackoverflow", questionId)
         .retrieve()
         .bodyToMono(StackOverflowQuestionList.class)
         .map(s -> s.getItems().getFirst());

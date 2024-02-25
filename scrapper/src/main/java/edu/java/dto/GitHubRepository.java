@@ -9,6 +9,6 @@ import lombok.Setter;
 public class GitHubRepository {
   private long id;
   private String name;
-  private String full_name;
-  private OffsetDateTime updated_at;
+  private String fullName;
+  private OffsetDateTime updatedAt;
 }
