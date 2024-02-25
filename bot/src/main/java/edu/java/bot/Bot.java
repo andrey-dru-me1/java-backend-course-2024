@@ -1,20 +1,26 @@
 package edu.java.bot;
 
+import com.pengrad.telegrambot.TelegramBot;
 import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import edu.java.bot.processing.message.UserMessageProcessor;
+import jakarta.annotation.PostConstruct;
 import java.util.List;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 @Component
 @Log4j2
+@RequiredArgsConstructor
 public class Bot implements UpdatesListener {
 
   private final UserMessageProcessor userMessageProcessor;
+  private final TelegramBot telegramBot;
 
-  public Bot(UserMessageProcessor userMessageProcessor) {
-    this.userMessageProcessor = userMessageProcessor;
+  @PostConstruct
+  public void setUpdatesListener() {
+    telegramBot.setUpdatesListener(this);
   }
 
   @Override
