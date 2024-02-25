@@ -1,8 +1,8 @@
 package edu.java.bot.db.emulation;
 
 import java.util.HashMap;
-import java.util.List;
+import java.util.Set;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Links extends HashMap<Long, List<String>> {}
+public class Links extends HashMap<Long, Set<String>> {}

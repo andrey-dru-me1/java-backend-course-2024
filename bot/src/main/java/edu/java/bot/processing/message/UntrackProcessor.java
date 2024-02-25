@@ -4,6 +4,7 @@ import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.db.emulation.Links;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class UntrackProcessor implements CommandProcessor {
 
@@ -28,7 +29,7 @@ public class UntrackProcessor implements CommandProcessor {
 
     @Override
     public SendMessage process(Long chatId, String message) {
-      List<String> userLinks = links.get(chatId);
+      Set<String> userLinks = links.get(chatId);
       String[] linksToRemove = message.split("\\r?\\n");
       List<String> removedLinks = new ArrayList<>();
       for (String linkToRemove : linksToRemove) {
@@ -37,7 +38,7 @@ public class UntrackProcessor implements CommandProcessor {
         }
       }
 
-      String response = "";
+      String response;
       if (removedLinks.isEmpty()) {
         response = "No such links were detected.";
       } else if (removedLinks.size() == 1) {

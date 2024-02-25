@@ -2,7 +2,7 @@ package edu.java.bot.processing.message;
 
 import com.pengrad.telegrambot.request.SendMessage;
 import edu.java.bot.db.emulation.Links;
-import java.util.List;
+import java.util.Set;
 
 public class ListProcessor implements CommandProcessor {
 
@@ -18,7 +18,7 @@ public class ListProcessor implements CommandProcessor {
       return new SendMessage(chatId, "Register yourself in bot via command /start first.");
     }
 
-    List<String> userLinks = links.get(chatId);
+    Set<String> userLinks = links.get(chatId);
     if (userLinks.isEmpty()) {
       return new SendMessage(chatId, "No links are tracked.");
     }
