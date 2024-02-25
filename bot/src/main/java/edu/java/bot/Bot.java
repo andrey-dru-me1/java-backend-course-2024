@@ -4,14 +4,12 @@ import com.pengrad.telegrambot.UpdatesListener;
 import com.pengrad.telegrambot.model.Update;
 import edu.java.bot.processing.message.UserMessageProcessor;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 @Component
+@Log4j2
 public class Bot implements UpdatesListener {
-
-  private final Logger logger = LoggerFactory.getLogger(Bot.class);
 
   private final UserMessageProcessor userMessageProcessor;
 
@@ -24,7 +22,7 @@ public class Bot implements UpdatesListener {
     for (Update update : list) {
       Long chatId = update.message().chat().id();
       String text = update.message().text();
-      logger.info(
+      log.info(
           "Message from user received. chatId: {}, message: {}, self: {}", chatId, text, this);
       userMessageProcessor.process(chatId, text);
     }
