@@ -14,9 +14,10 @@ public class ExceptionApiHandler {
     public ResponseEntity<ApiErrorResponse> illegalArgumentException(IllegalArgumentException exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiErrorResponse());
     }
+
     @ExceptionHandler(HttpClientErrorException.NotFound.class)
-    public ResponseEntity<ApiErrorResponse> illegalArgumentException(HttpClientErrorException.NotFound exception) {
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ApiErrorResponse());
+    public ResponseEntity<ApiErrorResponse> notFoundException(HttpClientErrorException.NotFound exception) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new ApiErrorResponse());
     }
 
 }
