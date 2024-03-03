@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ScrapperController {
     @PostMapping("/tg-chat/{id}")
-    public void postTgChat(@PathVariable String id) {
+    public void postTgChat(@PathVariable long id) {
 
     }
 
     @DeleteMapping("/tg-chat/{id}")
-    public void deleteTgChat(@PathVariable String id) {
+    public void deleteTgChat(@PathVariable long id) {
 
     }
 
