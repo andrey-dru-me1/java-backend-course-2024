@@ -19,7 +19,7 @@ public class TrackProcessor implements CommandProcessor {
     if (!links.containsKey(chatId)) {
       return new SendMessage(chatId, "Register yourself in bot via command /start first.");
     }
-    userMessageProcessor.setProcessor(new ReadLinksProcessor());
+    userMessageProcessor.setProcessor(chatId, new ReadLinksProcessor());
     return new SendMessage(chatId, "Write down links you want to track:");
   }
 
@@ -29,7 +29,7 @@ public class TrackProcessor implements CommandProcessor {
     public SendMessage process(Long chatId, String message) {
       String[] userLinks = message.split("\\r?\\n");
       links.get(chatId).addAll(List.of(userLinks));
-      userMessageProcessor.resetProcessor();
+      userMessageProcessor.resetProcessor(chatId);
       return new SendMessage(
           chatId, "Link" + (userLinks.length > 1 ? "s" : "") + " successfully added!");
     }

@@ -21,7 +21,7 @@ public class UntrackProcessor implements CommandProcessor {
     if (!links.containsKey(chatId)) {
       return new SendMessage(chatId, "Register yourself in bot via command /start first.");
     }
-    userMessageProcessor.setProcessor(new ReadLinksProcessor());
+    userMessageProcessor.setProcessor(chatId, new ReadLinksProcessor());
     return new SendMessage(chatId, "Write down links you want to remove:");
   }
 
@@ -52,7 +52,7 @@ public class UntrackProcessor implements CommandProcessor {
         responseBuilder.append("- are successfully removed!");
         response = responseBuilder.toString();
       }
-      userMessageProcessor.resetProcessor();
+      userMessageProcessor.resetProcessor(chatId);
       return new SendMessage(chatId, response);
     }
   }
